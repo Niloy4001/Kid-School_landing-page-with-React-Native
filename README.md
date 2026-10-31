@@ -6,7 +6,7 @@ A mobile-first landing page for a kids' school, built with **React Native (Expo)
  
 > Add screenshots here, for example:
 >
-> ![Home screen](./screenshots/home.png)
+> ![Home screen](./assets/logo.png)
  
 ## Features
  
