@@ -1,56 +1,154 @@
-# Welcome to your Expo app 👋
-
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
-
-## Get started
-
-1. Install dependencies
-
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **src/app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
+# Kid School Landing Page
+ 
+A mobile-first landing page for a kids' school, built with **React Native (Expo)** and styled with **Nativewind** (Tailwind CSS for React Native).
+ 
+## Preview
+ 
+> Add screenshots here, for example:
+>
+> ![Home screen](./screenshots/home.png)
+ 
+## Features
+ 
+- Responsive landing page layout for mobile (and web)
+- Reusable, prop-driven components
+- Hero banner with call-to-action button
+- Curriculum cards with gradient backgrounds
+- Stories / news grid
+- Navbar and footer sections
+- Smooth vertical scrolling
+## Page Sections
+ 
+| Section | Description |
+|---|---|
+| Navbar | Logo and navigation |
+| Banner | Hero image, headline and "Enroll Now" button |
+| Curriculums | Cards for each age group (e.g. Kinder 3 to 6 years) |
+| Stories | Two-column grid of stories with date badges |
+| Footer | Contact and closing information |
+ 
+## Tech Stack
+ 
+- [Expo](https://expo.dev/) and [Expo Router](https://docs.expo.dev/router/introduction/)
+- [React Native](https://reactnative.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Nativewind v4](https://www.nativewind.dev/) with Tailwind CSS 3
+- [expo-image](https://docs.expo.dev/versions/latest/sdk/image/)
+- [expo-linear-gradient](https://docs.expo.dev/versions/latest/sdk/linear-gradient/)
+- [@expo/vector-icons](https://docs.expo.dev/guides/icons/)
+- [react-native-safe-area-context](https://github.com/th3rdwave/react-native-safe-area-context)
+## Getting Started
+ 
+### Prerequisites
+ 
+- [Node.js](https://nodejs.org/) (LTS recommended)
+- npm
+- Expo Go app on your phone, or an Android/iOS emulator
+### Installation
+ 
 ```bash
-npm run reset-project
+# Clone the repository
+git clone <your-repository-url>
+ 
+# Go to the project folder
+cd kid_school
+ 
+# Install dependencies
+npm install
 ```
-
-This command will move the starter code to the **example** directory and create a blank **src/app** directory where you can start developing.
-
-### Other setup steps
-
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+ 
+### Run the app
+ 
+```bash
+npx expo start
+```
+ 
+If styles or packages do not update, clear the cache:
+ 
+```bash
+npx expo start --clear
+```
+ 
+Then:
+ 
+- Scan the QR code with **Expo Go** (Android/iOS), or
+- Press `a` for Android emulator, `i` for iOS simulator, `w` for web
+### Available Scripts
+ 
+| Command | Description |
+|---|---|
+| `npm start` | Start the Expo dev server |
+| `npm run android` | Run on Android |
+| `npm run ios` | Run on iOS |
+| `npm run web` | Run on web |
+| `npm run lint` | Lint the code |
+ 
+## Project Structure
+ 
+```
+kid_school/
+├── assets/              # Images and icons
+├── src/
+│   ├── app/
+│   │   ├── _layout.tsx  # Root layout (imports global.css)
+│   │   └── index.tsx    # Landing page
+│   └── componenst/      # Reusable components
+│       ├── Navbar.tsx
+│       ├── Banner.tsx
+│       ├── Curriculums.tsx
+│       ├── SingleCurricu.tsx
+│       ├── Stories.tsx
+│       ├── SingleStory.tsx
+│       └── Footer.tsx
+├── global.css           # Tailwind directives
+├── tailwind.config.js   # Tailwind / Nativewind config
+├── babel.config.js      # Babel preset for Nativewind
+├── metro.config.js      # Metro config with Nativewind
+├── app.json             # Expo config
+└── package.json
+```
+ 
+## Nativewind Setup Notes
+ 
+- Tailwind classes are applied with the `className` prop.
+- `global.css` is imported once in `src/app/_layout.tsx`.
+- `tailwind.config.js` must include `./src/**/*.{js,jsx,ts,tsx}` in `content`.
+- Third-party components (such as `expo-image` and `expo-linear-gradient`) use the `style` prop, or `cssInterop` to enable `className`.
+- Dynamic colors are passed through `style` or props, not through template-string class names.
+## Reusable Component Example
+ 
+```tsx
+<SingleCurricu
+  title="Kinder 3 to 6 years"
+  description="Short description here."
+  img={require("@/assets/kinder.png")}
+  topColor="#DEF5FF"
+  bottomColor="#FFFFFF"
+  borderColor="#DEF5FF"
+  LinkColor="#64C8FF"
+/>
+```
+ 
+## Troubleshooting
+ 
+| Problem | Fix |
+|---|---|
+| Styles not applying | Run `npx expo start --clear` and check the `content` path in `tailwind.config.js` |
+| `className` ignored on a component | Use `style`, or wrap with `cssInterop` |
+| Page does not scroll | Wrap content in `ScrollView` and give the parent `flex-1` |
+| Image not showing | Set an explicit width and height |
+ 
+## Future Improvements
+ 
+- Add more pages (About, Admission, Contact)
+- Connect the "Enroll Now" button to a form
+- Add animations
+- Dark mode support
+## Author
+ 
+**Your Name**
+GitHub: [@your-username](https://github.com/your-username)
+ 
+## License
+ 
+This project is for learning and portfolio purposes.
